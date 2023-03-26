@@ -8,16 +8,12 @@ export class AppController {
   @Get('dynamic-image')
   @Header('Content-Type', 'image/png')
   generateDynamicImage(
-    @Query('appName') appName: string,
-    @Query('fullName') fullName: string,
+    @Query('sm') socialMedia: string,
+    @Query('name') fullName: string,
     @Query('username') username: string,
     @Query('avatar') avatar: string,
   ) {
-    return this.appService.generateDynamicImage({
-      appName,
-      fullName,
-      username,
-      avatar,
-    });
+    const params = { socialMedia, fullName, username, avatar };
+    return this.appService.generateDynamicImage(params);
   }
 }
